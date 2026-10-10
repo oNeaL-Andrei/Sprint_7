@@ -1,10 +1,13 @@
+import allure  # Импортируем библиотеку для отчётов Allure
 import requests  # Импортируем библиотеку для отправки запросов
 import urls  # Импортируем файл с адресами
 
-class OrderApi: # Класс для работы с ручками заказов
+class OrderApi:  # Класс для работы с ручками заказов
 
-    def create_order(self, payload): # Метод для создания заказа (POST-запрос)
+    @allure.step("Создать новый заказ")
+    def create_order(self, payload):  # Метод для создания заказа (POST-запрос)
         return requests.post(urls.CREATE_ORDER_URL, json=payload)
 
-    def get_orders_list(self): # Метод для получения списка заказов (GET-запрос)
+    @allure.step("Получить список заказов")
+    def get_orders_list(self):  # Метод для получения списка заказов (GET-запрос)
         return requests.get(urls.GET_ORDERS_URL)
